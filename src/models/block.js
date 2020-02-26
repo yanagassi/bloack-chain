@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const Transaction = require('./transaction');
 
 class Block {
+
+  // Método construtor do bloco, onde é delimitado os dados necessários para a criação do bloco.
   constructor(index, previousBlockHash, previousProof, transactions) {
     this.index = index;
     this.proof = previousProof;
@@ -11,6 +13,7 @@ class Block {
     this.timestamp = Date.now();
   }
 
+  // Gera o valor da Hash baseado no bloco anterior.
   hashValue() {
     const { index, proof, transactions, timestamp } = this;
     const blockString = `${index}-${proof}-${JSON.stringify(transactions)}-${timestamp}`;
